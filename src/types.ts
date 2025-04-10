@@ -1064,6 +1064,10 @@ const float = () => new NilNumber({ bytes: 4, floating: true });
 const double = () => new NilNumber({ bytes: 8, floating: true });
 const buffer = (length: NilBufferDef['length']) => new NilBuffer({ length });
 const string = (length: NilStringDef['length']) => new NilString({ length });
+const paddedString = (length: number) => string(length).transform(
+	(ctx) => ctx.value,
+	(ctx) => ctx.value.padEnd(length, '\0'),
+);
 const array = <T extends NilTypeAny>(
 	schema: T,
 	length: NilArrayDef<T>['length']
@@ -1105,6 +1109,7 @@ export {
 	double,
 	buffer,
 	string,
+	paddedString,
 	array,
 	object,
 	enum_ as enum,
