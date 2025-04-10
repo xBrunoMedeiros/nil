@@ -25,6 +25,7 @@
 		"/index.d.ts"
 	],
 	"scripts": {
+		"prepare": "npm run build",
 		"build": "npm run build:cjs && npm run build:esm",
 		"build:esm": "rollup --config rollup.config.js",
 		"build:cjs": "tsc -p tsconfig.cjs.json",
